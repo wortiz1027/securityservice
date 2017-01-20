@@ -1,0 +1,4 @@
+rootProject.name = 'securityservice'
+
+include 'securitymodel'
+include 'securityserver'
