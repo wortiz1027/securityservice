@@ -49,6 +49,7 @@ subprojects {
 
     repositories {
         mavenCentral()
+        mavenLocal()
         jcenter()
     }
 
@@ -63,7 +64,11 @@ subprojects {
         compile group: 'org.slf4j', name: 'slf4j-log4j12', version: libVersion.SLF4J_VERSION
         compile group: 'org.aspectj', name: 'aspectjrt', version: libVersion.ASPECT4J
         compile group: 'org.aspectj', name: 'aspectjweaver', version: libVersion.ASPECT4J
+        compile group: 'org.springframework', name: 'spring-core', version: libVersion.SPRING_FRAMEWORK
+        compile group: 'org.springframework', name: 'spring-context', version: libVersion.SPRING_FRAMEWORK
         compile group: 'org.springframework', name: 'spring-aop', version: libVersion.SPRING_FRAMEWORK
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: libVersion.JACKSON
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: libVersion.JACKSON
         testCompile group: 'junit', name: 'junit', version: libVersion.JUNIT
     }
 }

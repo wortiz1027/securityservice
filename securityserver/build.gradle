@@ -3,7 +3,8 @@ apply plugin: 'war'
 
 dependencies {
 
-    compile group: 'org.springframework', name: 'spring-core', version: libVersion.SPRING_FRAMEWORK
+    compile project(':securitymodel')
+
     compile group: 'org.springframework.security', name: 'spring-security-core', version: libVersion.SPRING_SECURITY
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: libVersion.SPRING_SECURITY_OAUTH2
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: libVersion.SPRING_HETOAS
@@ -17,7 +18,5 @@ dependencies {
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: libVersion.SERVLET_API
     compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: libVersion.SERVLERT_JSP_API
     compile group: 'jstl', name: 'jstl', version: libVersion.JSLT
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: libVersion.JACKSON
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: libVersion.JACKSON
 
 }
