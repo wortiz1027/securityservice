@@ -2,4 +2,22 @@ apply plugin: 'java'
 apply plugin: 'war'
 
 dependencies {
+
+    compile group: 'org.springframework', name: 'spring-core', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: libVersion.SPRING_SECURITY
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: libVersion.SPRING_SECURITY_OAUTH2
+    compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: libVersion.SPRING_HETOAS
+    compile group: 'org.springframework', name: 'spring-web', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'org.springframework', name: 'spring-webmvc', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'org.springframework', name: 'spring-tx', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'org.springframework', name: 'spring-orm', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: libVersion.SPRING_SECURITY
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: libVersion.SPRING_SECURITY
+    compile group: 'org.springframework', name: 'spring-aop', version: libVersion.SPRING_FRAMEWORK
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: libVersion.SERVLET_API
+    compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: libVersion.SERVLERT_JSP_API
+    compile group: 'jstl', name: 'jstl', version: libVersion.JSLT
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: libVersion.JACKSON
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: libVersion.JACKSON
+
 }

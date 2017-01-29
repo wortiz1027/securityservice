@@ -16,6 +16,30 @@ buildscript {
     }
 }
 
+ext {
+    javaourceCompatibility = 1.8
+    libVersion = [
+            SLF4J_VERSION: '1.7.22',
+            JUNIT_VERSION: '4.12',
+            SPRING_FRAMEWORK: '4.3.5.RELEASE',
+            SPRING_SECURITY: '4.2.1.RELEASE',
+            SPRING_SECURITY_OAUTH2: '2.0.12.RELEASE',
+            SPRING_HETOAS: '0.23.0.RELEASE',
+            ASPECT4J: '1.8.10',
+            SERVLET_API: '3.1.0',
+            SERVLERT_JSP_API: '2.3.1',
+            JSLT: '1.2',
+            JACKSON: '2.8.6',
+            HIBERNATE_CORE: '5.2.6.Final',
+            HIBERNATE_VALIDATOR: '5.3.4.Final',
+            HIBERNATE_C3P0: '5.2.6.Final',
+            HIBERNATE_JPA: '1.0.0.Final',
+            ORACLE_JDBC: '12.1.0.2',
+            JUNIT: '4.12'
+
+    ]
+}
+
 allprojects {
     group 'co.com.securityservice'
     version '1.0-SNAPSHOT'
@@ -34,16 +58,13 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    ext {
-        SLF4J_VERSION = '1.7.22'
-        JUNIT_VERSION = '4.12'
-    }
-
     dependencies {
-        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.22'
-        compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.22'
-
-        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: libVersion.SLF4J_VERSION
+        compile group: 'org.slf4j', name: 'slf4j-log4j12', version: libVersion.SLF4J_VERSION
+        compile group: 'org.aspectj', name: 'aspectjrt', version: libVersion.ASPECT4J
+        compile group: 'org.aspectj', name: 'aspectjweaver', version: libVersion.ASPECT4J
+        compile group: 'org.springframework', name: 'spring-aop', version: libVersion.SPRING_FRAMEWORK
+        testCompile group: 'junit', name: 'junit', version: libVersion.JUNIT
     }
 }
 

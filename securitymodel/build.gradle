@@ -1,4 +1,11 @@
 apply plugin: 'java'
 
 dependencies {
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: libVersion.HIBERNATE_CORE
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: libVersion.HIBERNATE_VALIDATOR
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: libVersion.HIBERNATE_C3P0
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: libVersion.HIBERNATE_JPA
+    compile group: 'com.oracle', name: 'ojdbc7', version: libVersion.ORACLE_JDBC
+
 }
