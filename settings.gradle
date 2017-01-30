@@ -3,4 +3,5 @@ rootProject.name = 'securityservice'
 include 'securitymodel'
 include 'securityserver'
 include 'securityutils'
+include 'securityserviceear'
 

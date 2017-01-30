@@ -17,6 +17,11 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-aop', version: libVersion.SPRING_FRAMEWORK
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: libVersion.SERVLET_API
     compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: libVersion.SERVLERT_JSP_API
+    compile group: 'net.bull.javamelody', name: 'javamelody-core', version: libVersion.JAVAMELODY
+    compile('com.lowagie:itext:2.1.7') {
+        exclude group: 'bouncycstle'
+    }
+
     compile group: 'jstl', name: 'jstl', version: libVersion.JSLT
 
 }
