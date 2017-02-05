@@ -9,11 +9,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "co.com.security.*" })
 @Import({ SecurityConfig.class })
-public class RestViewConfig {
+public class RestViewConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -23,6 +25,5 @@ public class RestViewConfig {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
-
 
 }

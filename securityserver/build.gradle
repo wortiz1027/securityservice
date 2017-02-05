@@ -9,7 +9,13 @@ dependencies {
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: libVersion.SPRING_SECURITY_OAUTH2
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: libVersion.SPRING_HETOAS
     compile group: 'org.springframework', name: 'spring-web', version: libVersion.SPRING_FRAMEWORK
-    compile group: 'org.springframework', name: 'spring-webmvc', version: libVersion.SPRING_FRAMEWORK
+
+    compile('org.springframework:spring-webmvc:4.3.6.RELEASE') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+
     compile group: 'org.springframework', name: 'spring-tx', version: libVersion.SPRING_FRAMEWORK
     compile group: 'org.springframework', name: 'spring-orm', version: libVersion.SPRING_FRAMEWORK
     compile group: 'org.springframework.security', name: 'spring-security-web', version: libVersion.SPRING_SECURITY

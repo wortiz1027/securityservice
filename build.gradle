@@ -6,6 +6,7 @@ buildscript {
 
     repositories {
         mavenCentral()
+        mavenLocal()
         jcenter()
     }
 
@@ -19,7 +20,7 @@ ext {
     libVersion = [
             SLF4J_VERSION: '1.7.22',
             JUNIT_VERSION: '4.12',
-            SPRING_FRAMEWORK: '4.3.5.RELEASE',
+            SPRING_FRAMEWORK: '4.3.6.RELEASE',
             SPRING_SECURITY: '4.2.1.RELEASE',
             SPRING_SECURITY_OAUTH2: '2.0.12.RELEASE',
             SPRING_HETOAS: '0.23.0.RELEASE',
@@ -35,7 +36,6 @@ ext {
             ORACLE_JDBC: '12.1.0.2',
             JUNIT: '4.12',
             JAVAMELODY: '1.63.0'
-
     ]
 }
 
@@ -67,7 +67,15 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-context', version: libVersion.SPRING_FRAMEWORK
         compile group: 'org.springframework', name: 'spring-aop', version: libVersion.SPRING_FRAMEWORK
         compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: libVersion.JACKSON
-        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: libVersion.JACKSON
+        //compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: libVersion.JACKSON
+
+        compile('com.fasterxml.jackson.core:jackson-databind:2.8.6'){
+            exclude module: 'jackson-annotations'
+            exclude module: 'jackson-core'
+        }
+
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: libVersion.JACKSON
+
         testCompile group: 'junit', name: 'junit', version: libVersion.JUNIT
     }
 }

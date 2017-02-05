@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.naming.NamingException;
 import javax.servlet.Filter;
 import javax.servlet.http.HttpSessionListener;
 
@@ -26,7 +28,7 @@ public class ApplicationContextConfig {
     @Autowired
     private Environment env;
 
-    @Bean
+    /*@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
@@ -36,16 +38,15 @@ public class ApplicationContextConfig {
         dataSource.setPassword(env.getProperty("jdbc.password"));
 
         return dataSource;
-    }
-
-    /*@Bean
-    @MonitoredWithSpring
-    public DataSource dataSourceJndi() throws NamingException {
-        return (DataSource) new JndiTemplate().lookup(env.getProperty("jndi.datasource"));
     }*/
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public DataSource dataSource() throws NamingException {
+        return (DataSource) new JndiTemplate().lookup(env.getProperty("jndi.datasource"));
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() throws NamingException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         sessionFactory.setDataSource(dataSource());
