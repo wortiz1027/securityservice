@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "ROLES", catalog = "", schema = "APPLICATION")
+@Table(name = "ROLES", schema = "SECURITY")
 @NamedQueries({
         @NamedQuery(name = "Role.findAll"     , query = "SELECT r FROM Role r"),
         @NamedQuery(name = "Role.findByIdRole", query = "SELECT r FROM Role r WHERE r.idRole = :idRole"),
@@ -32,7 +32,6 @@ public class Role implements Serializable {
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Basic(optional = false)
     @NotNull
     @Column(name = "ID_ROLE")
     @SequenceGenerator(name = "sec_roles", sequenceName = "SQ_ROLES", allocationSize = 1)

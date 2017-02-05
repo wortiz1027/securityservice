@@ -1,4 +1,4 @@
-package annotations;
+package co.com.security.utils.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,7 +28,7 @@ public class LogginAspect {
      * <p>Metodo: Definicion del PointCut controller.</p>
      * <p>Descripcion: Este metodo es la definicion del pointcut para identificar todos los metodos anotados con @InfoLogger.</p>
      */
-    @Pointcut("@annotation(co.com.microservice.application.anotaciones.InfoLogger)")
+    @Pointcut("@annotation(co.com.security.utils.annotations.InfoLogger)")
     public void infoLoggerPointcut() {}
 
     /**
@@ -96,7 +96,7 @@ public class LogginAspect {
     /**
      * <p>Metodo: Control de Excepciones.</p>
      * <p>Descripcion: Este metodo se ejecuta cuando se lanza una excepcion.</p>
-     * @param e de tipo Exception
+     * @param
      */
     //@AfterThrowing(pointcut="infoLoggerPointcut() && controllerPointcut() && requestMappingPointcut() && operacionesGetPointcut()", throwing="error")
     @AfterThrowing(pointcut="infoLoggerPointcut()", throwing="error")

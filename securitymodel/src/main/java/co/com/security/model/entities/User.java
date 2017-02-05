@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "USERS", catalog = "", schema = "APPLICATION")
+@Table(name = "USERS", schema = "SECURITY")
 @NamedQueries({
         @NamedQuery(name = "User.findAll"                   , query = "SELECT u FROM User u"),
         @NamedQuery(name = "User.findByIdUser"              , query = "SELECT u FROM User u WHERE u.idUser = :idUser"),
@@ -48,7 +48,6 @@ public class User implements Serializable {
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Basic(optional = false)
     @NotNull
     @Column(name = "ID_USER")
     @SequenceGenerator(name = "sec_user", sequenceName = "SQ_USERS", allocationSize = 1)

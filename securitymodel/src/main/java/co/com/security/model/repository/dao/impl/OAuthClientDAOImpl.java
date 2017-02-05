@@ -3,6 +3,7 @@ package co.com.security.model.repository.dao.impl;
 import co.com.security.model.entities.OauthClientDetails;
 import co.com.security.model.generic.GenericDaoImpl;
 import co.com.security.model.repository.dao.OAuthClientDAO;
+import co.com.security.utils.annotations.InfoLogger;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,7 @@ import org.springframework.util.Assert;
 import javax.persistence.NoResultException;
 
 @Transactional
-@Repository("OAuthClientDAO")
+@Repository("oauthClientDAO")
 public class OAuthClientDAOImpl  extends GenericDaoImpl<OauthClientDetails, String> implements OAuthClientDAO {
 
     public OAuthClientDAOImpl() {
@@ -19,6 +20,7 @@ public class OAuthClientDAOImpl  extends GenericDaoImpl<OauthClientDetails, Stri
     }
 
     @Override
+    @InfoLogger(origen = "isClientAvailable")
     public boolean isClientAvailable(String clientId) {
         Assert.notNull(clientId);
 

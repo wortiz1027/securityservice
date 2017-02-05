@@ -12,8 +12,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@SuppressWarnings("ALL")
 @Entity
-@Table(name = "OAUTH_CLIENT_DETAILS", catalog = "", schema = "APPLICATION", uniqueConstraints = {
+@Table(name = "OAUTH_CLIENT_DETAILS", catalog = "", schema = "SECURITY", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CLIENT_NAME"})})
 @NamedQueries({
         @NamedQuery(name = "OauthClientDetails.findAll", query = "SELECT o FROM OauthClientDetails o"),

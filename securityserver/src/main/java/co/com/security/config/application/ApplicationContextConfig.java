@@ -1,15 +1,13 @@
 package co.com.security.config.application;
 
-import annotations.LogginAspect;
-import co.com.security.service.impl.CustomUserDetailServices;
+import co.com.security.utils.aspects.LogginAspect;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.servlet.Filter;
@@ -20,7 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"co.com.security.model.*", "co.com.security.service.*"})
+@ComponentScan(basePackages = {"co.com.security.*"})
 @PropertySource(value = {"classpath:jdbc.properties"})
 @EnableAspectJAutoProxy
 public class ApplicationContextConfig {
@@ -80,13 +78,6 @@ public class ApplicationContextConfig {
     }
 
     @Bean
-    public UserDetailsService customUserDetailsService(){
-        return new CustomUserDetailServices();
-    }
-
-
-
-    @Bean
     public LogginAspect myAspect() {
         return new LogginAspect();
     }
@@ -95,6 +86,7 @@ public class ApplicationContextConfig {
     public HttpSessionListener javaMelodyListener(){
         return new net.bull.javamelody.SessionListener();
     }
+
     @Bean
     public Filter javaMelodyFilter(){
         return new net.bull.javamelody.MonitoringFilter();

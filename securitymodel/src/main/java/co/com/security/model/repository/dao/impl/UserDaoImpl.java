@@ -1,6 +1,6 @@
 package co.com.security.model.repository.dao.impl;
 
-import annotations.InfoLogger;
+import co.com.security.utils.annotations.InfoLogger;
 import co.com.security.model.entities.User;
 import co.com.security.model.generic.GenericDaoImpl;
 import co.com.security.model.repository.dao.UserDao;

@@ -1,6 +1,6 @@
 package co.com.security.service.impl;
 
-import annotations.InfoLogger;
+import co.com.security.utils.annotations.InfoLogger;
 import co.com.security.model.entities.OauthClientDetails;
 import co.com.security.model.repository.dao.OAuthClientDAO;
 import co.com.security.service.dao.ClientServicesDao;

@@ -25,3 +25,7 @@ dependencies {
     compile group: 'jstl', name: 'jstl', version: libVersion.JSLT
 
 }
+
+war {
+    jar.enabled = false
+}
