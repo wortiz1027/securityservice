@@ -47,6 +47,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.allowFormAuthenticationForClients();
+        oauthServer
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()");
     }
 
     @Override
@@ -60,19 +63,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // Con los datos del cliente en base de datos
         clients.withClientDetails(clientDetailService);
-
-        // Con los datos del cliente en memoria
-			/*clients
-				.inMemory()
-					.withClient("clientapp")
-						.authorizedGrantTypes("password", "refresh_token", "client_credentials")
-						.authorities("USER")
-						.scopes("read", "write")
-						.resourceIds(RESOURCE_ID)
-						.secret("8649168")
-						.accessTokenValiditySeconds(300)
-						.refreshTokenValiditySeconds(600)
-						.autoApprove(false);*/
 
     }
 

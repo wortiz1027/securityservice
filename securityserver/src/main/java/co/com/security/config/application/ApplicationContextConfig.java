@@ -1,15 +1,19 @@
 package co.com.security.config.application;
 
+import co.com.security.service.utils.Constantes;
 import co.com.security.utils.aspects.LogginAspect;
+import net.bull.javamelody.MonitoredWithSpring;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.naming.NamingException;
 import javax.servlet.Filter;
 import javax.servlet.http.HttpSessionListener;
 
@@ -19,14 +23,16 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"co.com.security.*"})
-@PropertySource(value = {"classpath:jdbc.properties"})
+@PropertySource(value = {"classpath:jdbc.properties",
+                         "classpath:application.properties",
+                         "classpath:i18n/messages.properties"})
 @EnableAspectJAutoProxy
 public class ApplicationContextConfig {
 
     @Autowired
     private Environment env;
 
-    @Bean
+    /*@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
@@ -36,16 +42,16 @@ public class ApplicationContextConfig {
         dataSource.setPassword(env.getProperty("jdbc.password"));
 
         return dataSource;
-    }
-
-    /*@Bean
-    @MonitoredWithSpring
-    public DataSource dataSourceJndi() throws NamingException {
-        return (DataSource) new JndiTemplate().lookup(env.getProperty("jndi.datasource"));
     }*/
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    @MonitoredWithSpring
+    public DataSource dataSource() throws NamingException {
+        return (DataSource) new JndiTemplate().lookup(env.getProperty(Constantes.JNDI_DATASOURCE_KEY));
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() throws NamingException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         sessionFactory.setDataSource(dataSource());
