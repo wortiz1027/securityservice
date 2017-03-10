@@ -1,6 +1,8 @@
 package co.com.security.config.application;
 
+import co.com.security.service.utils.Constantes;
 import co.com.security.utils.aspects.LogginAspect;
+import net.bull.javamelody.MonitoredWithSpring;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -21,7 +23,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"co.com.security.*"})
-@PropertySource(value = {"classpath:jdbc.properties"})
+@PropertySource(value = {"classpath:jdbc.properties",
+                         "classpath:application.properties",
+                         "classpath:i18n/messages.properties"})
 @EnableAspectJAutoProxy
 public class ApplicationContextConfig {
 
@@ -41,8 +45,9 @@ public class ApplicationContextConfig {
     }*/
 
     @Bean
+    @MonitoredWithSpring
     public DataSource dataSource() throws NamingException {
-        return (DataSource) new JndiTemplate().lookup(env.getProperty("jndi.datasource"));
+        return (DataSource) new JndiTemplate().lookup(env.getProperty(Constantes.JNDI_DATASOURCE_KEY));
     }
 
     @Bean

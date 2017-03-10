@@ -6,6 +6,7 @@ import co.com.security.model.repository.dao.UserDao;
 import co.com.security.service.dao.UserServicesDao;
 import co.com.security.service.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,14 +17,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-@Service("customUserDetailsService")
+@Service("customUserDetailService")
 @Transactional
 public class CustomUserDetailServices implements UserDetailsService, UserServicesDao {
+
+    @Resource
+    private Environment env;
 
     @Autowired
     private UserDao userDao;
@@ -38,7 +43,7 @@ public class CustomUserDetailServices implements UserDetailsService, UserService
         co.com.security.model.entities.User user = userDao.loadUserByUsername(username);
 
         if (user == null)
-            throw new UsernameNotFoundException(String.format(Constantes.MSG_ERROR_USUARIO_NO_REGISTRADO, username));
+            throw new UsernameNotFoundException(String.format(env.getRequiredProperty(Constantes.MSG_ERROR_USUARIO_NO_REGISTRADO_KEY), username));
 
         return new User(user.getLogin(),
                 user.getPassword(),

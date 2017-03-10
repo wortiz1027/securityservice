@@ -6,6 +6,8 @@ import co.com.security.model.repository.dao.OAuthClientDAO;
 import co.com.security.service.dao.ClientServicesDao;
 import co.com.security.service.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -16,11 +18,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @Service("customClientDetailsService")
 @Transactional
 public class CustomClientDetailService implements ClientDetailsService, ClientServicesDao {
+
+    @Resource
+    private Environment env;
 
     @Autowired
     private OAuthClientDAO oauthClientDAO;
@@ -30,7 +36,7 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
 
         if (!oauthClientDAO.isClientAvailable(clientId)){
-            throw new ClientRegistrationException(String.format(Constantes.MSG_ERROR_CLIENTE_NO_REGISTRADO, clientId));
+            throw new ClientRegistrationException(String.format(env.getRequiredProperty(Constantes.MSG_ERROR_CLIENTE_NO_REGISTRADO_KEY), clientId));
         }
 
         OauthClientDetails client = oauthClientDAO.loadClientById(clientId);
