@@ -28,7 +28,7 @@ import java.security.SecureRandom;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("customUserDetailsService")
+    @Qualifier("customUserDetailService")
     private UserDetailsService userDetailsService;
 
     @Autowired
